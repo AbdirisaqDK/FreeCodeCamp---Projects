@@ -1,0 +1,835 @@
+<style>
+    html,
+body {
+  min-width: 290px;
+  color:#ccd6dd;
+  background-color: #00233b;
+  font-family: 'Open Sans', Arial, sans-serif;
+  line-height: 1.5;
+}
+
+#navbar {
+  position: fixed;
+  min-width: 290px;
+  top: 0px;
+  left: 0px;
+  width: 300px;
+  height: 100%;
+  border-right: solid;
+  border-color: rgba(0, 22, 22, 0.4);
+}
+
+header {
+  color:#ccd6dd;
+  margin: 10px;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: thin;
+}
+
+#main-doc header {
+  text-align: left;
+  margin: 0px;
+}
+
+#navbar ul {
+  height: 88%;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#navbar li {
+  color: #99adbb;
+  border-top: 1px solid;
+  list-style: none;
+  position: relative;
+  width: 100%;
+}
+
+#navbar a {
+  display: block;
+  padding: 10px 30px;
+  color: #99adbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+#navbar a:hover {
+  background-color: #00192a;
+}
+
+#main-doc {
+  position: absolute;
+  margin-left: 310px;
+  padding: 20px;
+  margin-bottom: 110px;
+}
+
+section article {
+  color: #b2c1cc;
+  margin: 15px;
+  font-size: 0.96em;
+}
+
+section li {
+  margin: 15px 0px 0px 20px;
+}
+
+code {
+  display: block;
+  text-align: left;
+  white-space: pre-line;
+  position: relative;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 2;
+  background-color: #00192a;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 815px) {
+  /* For mobile phones: */
+  #navbar ul {
+    border: 1px solid;
+    height: 207px;
+  }
+
+  #navbar {
+    background-color: white;
+    position: absolute;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 275px;
+    border: none;
+    z-index: 1;
+    border-bottom: 2px solid;
+  }
+
+  #main-doc {
+    position: relative;
+    margin-left: 0px;
+    margin-top: 270px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #main-doc {
+    margin-left: -10px;
+  }
+
+  code {
+    margin-left: -20px;
+    width: 100%;
+    padding: 15px;
+    padding-left: 10px;
+    padding-right: 45px;
+    min-width: 233px;
+  }
+}
+</style>
+<!-- Above is a stylesheet -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Abdirisaq Abdullahi Hassan | FreeCodeCamp - Project Traning </title>
+    </head>
+    <body>
+        <nav id="navbar">
+            <header><a href="https://www.php.net/docs.php" target="_blank">PHP Documentation</a></header>
+            <ul>
+              <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+              <li>
+                <a class="nav-link" href="#General_considerations"
+                  >General considerations</a
+                >
+              </li>
+              <li>
+                <a class="nav-link" href="#Installed_as_CGI_binary">Installed as CGI binary</a>
+              </li>
+              <li><a class="nav-link" href="#Installed_as_an_Apache_module">Installed as an Apache module</a></li>
+              <li><a class="nav-link" href="#Session_Security">Session Security</a></li>
+              <li>
+                <a class="nav-link" href="#Database_Security">Database Security</a>
+              </li>
+              <li><a class="nav-link" href="#Error_Reporting">Error Reporting</a></li>
+              <li><a class="nav-link" href="#User_Submitted_Data">User Submitted Data</a></li>
+              <li><a class="nav-link" href="#Hiding_PHP">Hiding PHP</a></li>
+              <li><a class="nav-link" href="#Keeping_Current">Keeping Current</a></li>
+              <li>
+                <a class="nav-link" href="#Operators">Operators</a>
+              </li>
+              <li><a class="nav-link" href="#Functions">Functions</a></li>
+              <li>
+                <a class="nav-link" href="#Copyright"
+                  >Copyright</a
+                >
+              </li>
+              <li><a class="nav-link" href="#Reference">Reference</a></li>
+            </ul>
+          </nav>
+          <main id="main-doc">
+            <section class="main-section" id="Introduction">
+              <header>Introduction</header>
+              <article>
+                <p>
+                    PHP is a powerful language and the interpreter, whether included in a web server as a 
+                    module or executed as a separate CGI binary, is able to access files, execute commands 
+                    and open network connections on the server. These properties make anything run on a web 
+                    server insecure by default. PHP is designed specifically to be a more secure language for 
+                    writing CGI programs than Perl or C, and with correct selection of compile-time and 
+                    runtime configuration options, and proper coding practices, it can give you exactly 
+                    the combination of freedom and security you need.
+                </p>
+          
+                <p>
+                    As there are many different ways of utilizing PHP, there are many configuration options 
+                    controlling its behaviour. A large selection of options guarantees you can use PHP for a 
+                    lot of purposes, but it also means there are combinations of these options and server 
+                    configurations that result in an insecure setup.
+                </p>
+                <p>
+                    The configuration flexibility of PHP is equally rivalled by the code flexibility. PHP can 
+                    be used to build complete server applications, with all the power of a shell user, or it 
+                    can be used for simple server-side includes with little risk in a tightly controlled 
+                    environment. How you build that environment, and how secure it is, is largely up to the 
+                    PHP developer.
+                </p>
+                <p>
+                    This chapter starts with some general security advice, explains the different configuration
+                    option combinations and the situations they can be safely used, and describes different 
+                    considerations in coding for different levels of security.
+                </p>
+                
+              </article>
+            </section>
+            <section class="main-section" id="General_considerations">
+              <header>General considerations</header>
+              <article>
+                <p>A completely secure system is a virtual impossibility, so an approach often used in the 
+                    security profession is one of balancing risk and usability. If every variable submitted by 
+                    a user required two forms of biometric validation (such as a retinal scan and a fingerprint), 
+                    you would have an extremely high level of accountability. It would also take half an hour to 
+                    fill out a fairly complex form, which would tend to encourage users to find ways of bypassing 
+                    the security.
+                </p>
+                <p>The best security is often unobtrusive enough to suit the requirements without the user being 
+                    prevented from accomplishing their work, or over-burdening the code author with excessive 
+                    complexity. Indeed, some security attacks are merely exploits of this kind of overly built security,
+                    which tends to erode over time.
+                </p>
+                <p>A phrase worth remembering: A system is only as good as the weakest link in a chain. If all transactions
+                    are heavily logged based on time, location, transaction type, etc. but the user is only verified based
+                    on a single cookie, the validity of tying the users to the transaction log is severely weakened.
+                </p>
+                <p>When testing, keep in mind that you will not be able to test all possibilities for even the simplest of
+                     pages. The input you may expect will be completely unrelated to the input given by a disgruntled 
+                     employee, a cracker with months of time on their hands, or a housecat walking across the keyboard. 
+                     This is why it's best to look at the code from a logical perspective, to discern where unexpected 
+                     data can be introduced, and then follow how it is modified, reduced, or amplified.
+                </p>
+                <p>The Internet is filled with people trying to make a name for themselves by breaking your code, crashing 
+                your site, posting inappropriate content, and otherwise making your day interesting. It doesn't matter 
+                if you have a small or large site, you are a target by simply being online, by having a server that can 
+                be connected to. Many cracking programs do not discern by size, they simply trawl massive IP blocks 
+                looking for victims. Try not to become one.
+                </p>
+          
+              </article>
+            </section>
+            <section class="main-section" id="Installed_as_CGI_binary">
+              <header>Installed as CGI binary</header>
+              <article>
+                  <ol>
+                      <li><b>Possible attacks</b></li>
+                  </ol>
+                <p>
+                    Using PHP as a CGI binary is an option for setups that for some reason do not wish to integrate PHP 
+                    as a module into server software (like Apache), or will use PHP with different kinds of CGI wrappers 
+                    to create safe chroot and setuid environments for scripts. This setup usually involves installing 
+                    executable PHP binary to the web server cgi-bin directory. CERT advisory <a href="https://resources.sei.cmu.edu/library/asset-view.cfm?assetID=496170"
+                    target="_blank">» CA-96.11</a> recommends 
+                    against placing any interpreters into cgi-bin. Even if the PHP binary can be used as a standalone 
+                    interpreter, PHP is designed to prevent the attacks this setup makes possible:
+                </p>
+                    <ul>
+                        <li>
+                            Accessing system files: <b>http://my.host/cgi-bin/php?/etc/passwd</b> The query information in a 
+                            URL after the question mark (?) is passed as command line arguments to the interpreter by 
+                            the CGI interface. Usually interpreters open and execute the file specified as the first 
+                            argument on the command line. When invoked as a CGI binary, PHP refuses to interpret the 
+                            command line arguments.
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            Accessing any web document on server: <b>http://my.host/cgi-bin/php/secret/doc.html</b> The path information 
+                            part of the URL after the PHP binary name,<b>/secret/doc.html</b> is conventionally used to specify the name 
+                            of the file to be opened and interpreted by the CGI program. Usually some web server configuration 
+                            directives (Apache: Action) are used to redirect requests to documents like 
+                            <b>http://my.host/secret/script.php</b> to the PHP interpreter. With this setup, the web server first checks 
+                            the access permissions to the directory <b>/secret</b>, and after that creates the redirected request 
+                            <b>http://my.host/cgi-bin/php/secret/script.php</b>. Unfortunately, if the request is originally given 
+                            in this form, no access checks are made by web server for file <b>/secret/script.php</b>, but only for the 
+                            <b>/cgi-bin/php file</b>. This way any user able to access <b>/cgi-bin/php</b> is able to access any protected 
+                            document on the web server. In PHP, runtime configuration directives <b><a href="https://www.php.net/manual/en/ini.core.php#ini.cgi.force-redirect"
+                            target="_blank">cgi.force_redirect</a></b>, <b><a href="https://www.php.net/manual/en/ini.core.php#ini.doc-root"
+                            target="_blank">doc_root</a></b> 
+                            and <b><a herf="https://www.php.net/manual/en/ini.core.php#ini.user-dir"
+                            target="_blank">user_dir</a></b> can be used to prevent this attack, if the server document tree has any directories 
+                            with access restrictions. See below for full the explanation of the different combinations.
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>When you have time keep reading on this section<a href="https://www.php.net/manual/en/security.php"
+                            target="_blank"><b> Security</b></a></li>
+                    </ul>
+          
+              </article>
+            </section>
+            <section class="main-section" id="Installed_as_an_Apache_module">
+              <header>Installed as an Apache module</header>
+              <article>
+                <p>
+                    When PHP is used as an Apache module it inherits Apache's user permissions (typically those of the "nobody"
+                    user). This has several impacts on security and authorization. For example, if you are using PHP to access
+                    a database, unless that database has built-in access control, you will have to make the database accessible
+                    to the "nobody" user. This means a malicious script could access and modify the database, even without a 
+                    username and password. It's entirely possible that a web spider could stumble across a database administrator's
+                    web page, and drop all of your databases. You can protect against this with Apache authorization, or you
+                    can design your own access model using LDAP, <b>.htaccess</b> files, etc. and include that code as part of your 
+                    PHP scripts.
+                </p>
+                <p>
+                    Often, once security is established to the point where the PHP user (in this case, the apache user) has 
+                    very little risk attached to it, it is discovered that PHP is now prevented from writing any files to 
+                    user directories. Or perhaps it has been prevented from accessing or changing databases. It has equally 
+                    been secured from writing good and bad files, or entering good and bad database transactions.
+                </p>
+                <p>
+                    A frequent security mistake made at this point is to allow apache root permissions, or to escalate 
+                    apache's abilities in some other way.
+                </p>
+                <p>
+                    Escalating the Apache user's permissions to root is extremely dangerous and may compromise the entire 
+                    system, so sudo'ing, chroot'ing, or otherwise running as root should not be considered by those who are 
+                    not security professionals.
+                </p>
+                <p>
+                    There are some simpler solutions. By using <a href="https://www.php.net/manual/en/ini.core.php#ini.open-basedir"
+                    target="_blank">open_basedir</a> you can control and restrict what directories 
+                    are allowed to be used for PHP. You can also set up apache-only areas, to restrict all web based activity 
+                    to non-user, or non-system, files.
+                </p>
+                <ul>
+                    <li>
+                        Continue reading <a href="https://www.php.net/manual/en/security.apache.php"
+                        target="_blank">Installed as an Apache module</a>
+                    </li>
+                </ul>
+                
+              </article>
+            </section>
+            <section class="main-section" id="Session_Security">
+              <header>Session Security</header>
+              <article>
+              <p>
+                It is important keeping HTTP session management secure. Session related security is described in
+                <a href="https://www.php.net/manual/en/session.security.php" target="_blank">
+                Session Security</a> section of <a href="https://www.php.net/manual/en/book.session.php"target"_blank">
+                Session module</a> reference.
+              </p>
+              <ul>
+                  <li>
+                      Continue reading <a href="https://www.php.net/manual/en/security.filesystem.php">Session Secuirty</a>
+                  </li>
+              </ul>
+            </article>
+            </section>
+            <section class="main-section" id="Database_Security">
+              <header>Database Security</header>
+              <article>
+                <p>
+                    Nowadays, databases are cardinal components of any web based application by enabling websites to 
+                    provide varying dynamic content. Since very sensitive or secret information can be stored in a database, 
+                    you should strongly consider protecting your databases.
+                </p>
+                <p>
+                    To retrieve or to store any information you need to connect to the database, send a legitimate query, 
+                    fetch the result, and close the connection. Nowadays, the commonly used query language in this interaction 
+                    is the Structured Query Language (SQL). See how an attacker can <a href="https://www.php.net/manual/en/security.database.sql-injection.php" target="_blank">
+                    tamper with an SQL query</a>.
+                </p>
+                <p>
+                    As you can surmise, PHP cannot protect your database by itself. The following sections aim to be an 
+                    introduction into the very basics of how to access and manipulate databases within PHP scripts.
+                </p>
+                <p>
+                    Keep in mind this simple rule: defense in depth. The more places you take action to increase the protection 
+                    of your database, the less probability of an attacker succeeding in exposing or abusing any stored 
+                    information. Good design of the database schema and the application deals with your greatest fears.
+                </p>
+                <ol>
+                    <li>
+                        <b>Designing Databases</b>
+                    </li>
+                </ol>
+                <p>
+                    The first step is always to create the database, unless you want to use one from a third party. When 
+                    a database is created, it is assigned to an owner, who executed the creation statement. Usually, only 
+                    the owner (or a superuser) can do anything with the objects in that database, and in order to allow 
+                    other users to use it, privileges must be granted.
+                </p>
+                <p>
+                    Applications should never connect to the database as its owner or a superuser, because these users 
+                    can execute any query at will, for example, modifying the schema (e.g. dropping tables) or deleting 
+                    its entire content.
+                </p>
+                <p>
+                    Applications should never connect to the database as its owner or a superuser, because these 
+                    users can execute any query at will, for example, modifying the schema (e.g. dropping tables) 
+                    or deleting its entire content.
+                </p>
+                <ul>
+                    <li>
+                        Continue reading <a href="https://www.php.net/manual/en/security.database.php">Designing Databases</a>
+                    </li>
+                </ul>
+              </article>
+            </section>
+            <section class="main-section" id="Error_Reporting">
+              <header>Error Reporting</header>
+              <article>
+                <p>
+                    With PHP security, there are two sides to error reporting. One is beneficial to increasing 
+                    security, the other is detrimental.
+                </p>
+                    A standard attack tactic involves profiling a system by feeding it improper data, and checking 
+                    for the kinds, and contexts, of the errors which are returned. This allows the system cracker to 
+                    probe for information about the server, to determine possible weaknesses. For example, if an 
+                    attacker had gleaned information about a page based on a prior form submission, they may attempt 
+                    to override variables, or modify them:
+                <p>
+                    <b>Example #1 Attacking Variables with a custom HTML page</b>
+                </p>
+                <code> form method="post" action="attacktarget?username=badfoo&amp;password=badfoo"
+                    input type="hidden" name="username" value="badfoo"
+                    input type="hidden" name="password" value="badfoo"
+                    form</code>
+                <p>
+                    The PHP errors which are normally returned can be quite helpful to a developer who is trying 
+                    to debug a script, indicating such things as the function or file that failed, the PHP file it 
+                    failed in, and the line number which the failure occurred in. This is all information that can 
+                    be exploited. It is not uncommon for a php developer to use <a href="https://www.php.net/manual/en/function.show-source.php" target="_blank">
+                    show_source()</a>, <a href="https://www.php.net/manual/en/function.highlight-string.php" target="_blank">highlight_string()</a>, 
+                    or <a href="https://www.php.net/manual/en/function.highlight-file.php" target="_target">highlight_file()</a> 
+                    as a debugging measure, but in a live site, this can expose hidden variables, 
+                    unchecked syntax, and other dangerous information. Especially dangerous is running code from known 
+                    sources with built-in debugging handlers, or using common debugging techniques. If the attacker can 
+                    determine what general technique you are using, they may try to brute-force a page, by sending various 
+                    common debugging strings:
+                </p>
+                <p>
+                    <strong>Example #2 Exploiting common debugging variables</strong>
+                </p>
+                <code>
+                  form method="post" action="attacktarget?errors=Y&amp;showerrors=1&amp;debug=1"
+                  input type="hidden" name="errors" value="Y"
+                  input type="hidden" name="showerrors" value="1"
+                  input type="hidden" name="debug" value="1"
+                  form
+                </code>
+                <p>
+                    Regardless of the method of error handling, the ability to probe a system for errors 
+                    leads to providing an attacker with more information.
+                </p>
+                <p>
+                    For example, the very style of a generic PHP error indicates a system is running PHP. 
+                    If the attacker was looking at an .html page, and wanted to probe for the back-end 
+                    (to look for known weaknesses in the system), by feeding it the wrong data they may be 
+                    able to determine that a system was built with PHP.
+                </p>
+                <p>
+                    A function error can indicate whether a system may be running a specific database engine, 
+                    or give clues as to how a web page or programmed or designed. This allows for deeper investigation 
+                    into open database ports, or to look for specific bugs or weaknesses in a web page. By feeding 
+                    different pieces of bad data, for example, an attacker can determine the order of authentication 
+                    in a script, (from the line number errors) as well as probe for exploits that may be exploited in 
+                    different locations in the script.
+                </p>
+                <p>
+                    A filesystem or general PHP error can indicate what permissions the web server has, as well as 
+                    the structure and organization of files on the web server. Developer written error code can aggravate 
+                    this problem, leading to easy exploitation of formerly "hidden" information.
+                </p>
+                <p>
+                    There are three major solutions to this issue. The first is to scrutinize all functions, and 
+                    attempt to compensate for the bulk of the errors. The second is to disable error reporting entirely 
+                    on the running code. The third is to use PHP's custom error handling functions to create your own 
+                    error handler. Depending on your security policy, you may find all three to be applicable to your 
+                    situation.
+                </p>
+                <p>
+                    One way of catching this issue ahead of time is to make use of PHP's own 
+                    <a href="https://www.php.net/manual/en/function.error-reporting.php" target="_blank">error_reporting()</a>,
+                    to help you secure your code and find variable usage that may be dangerous. By testing your code, 
+                    prior to deployment, with <b>E_ALL</b>, you can quickly find areas where your variables may be open to 
+                    poisoning or modification in other ways. Once you are ready for deployment, you should either disable 
+                    error reporting completely by setting 
+                    <a href="https://www.php.net/manual/en/function.error-reporting.php" target="_blank">error_reporting()</a>
+                     to 0, or turn off the error display using the 
+                    php.ini option display_errors, to insulate your code from probing. If you choose to do the latter, 
+                    you should also define the path to your log file using the error_log ini directive, and turn 
+                    log_errors on.
+                </p>
+                <p>
+                    <strong>Example #3 Finding dangerous variables with E_ALL</strong>
+                </p>
+                <code>
+                    ?php
+                    if ($username) {  // Not initialized or checked before usage
+                        $good_login = 1;
+                    }
+                    if ($good_login == 1) { // If above test fails, not initialized or checked before usage
+                        readfile ("/highly/sensitive/data/index.html");
+                    }
+                    ?
+                </code>
+              </article>
+            </section>
+            <section class="main-section" id="User_Submitted_Data">
+              <header>User Submitted Data</header>
+              <article>
+                <p>
+                    The greatest weakness in many PHP programs is not inherent in the language itself, 
+                    but merely an issue of code not being written with security in mind. For this reason, 
+                    you should always take the time to consider the implications of a given piece of code, 
+                    to ascertain the possible damage if an unexpected variable is submitted to it.
+                </p>
+                <p>
+                  <strong>Example #1 Dangerous Variable Usage</strong>
+                </p>
+                <p>
+                    <code>
+                    ?php
+                    // remove a file from the user's home directory... or maybe
+                    // somebody else's?
+                    unlink ($evil_var);
+
+                    // Write logging of their access... or maybe an /etc/passwd entry?
+                    fwrite ($fp, $evil_var);
+
+                    // Execute something trivial.. or rm -rf *?
+                    system ($evil_var);
+                    exec ($evil_var);
+
+                    ?>
+                </code>
+                </p>
+                <p>
+                    You should always carefully examine your code to make sure that any variables being 
+                    submitted from a web browser are being properly checked, and ask yourself the following 
+                    questions:
+                </p>
+                <ul>
+                    <li>Will this script only affect the intended files?</li>
+                    <li>Can unusual or undesirable data be acted upon?</li>
+                    <li>an this script be used in unintended ways?</li>
+                    <li>Can this be used in conjunction with other scripts in a negative manner?</li>
+                    <li>Will any transactions be adequately logged?</li>
+                </ul>
+                <p>
+                    By adequately asking these questions while writing the script, rather than later, 
+                    you prevent an unfortunate re-write when you need to increase your security. By starting 
+                    out with this mindset, you won't guarantee the security of your system, but you can help 
+                    improve it.
+                </p>
+                <p>
+                    You may also want to consider turning off register_globals, magic_quotes, or other convenience
+                    settings which may confuse you as to the validity, source, or value of a given variable. Working 
+                    with PHP in error_reporting(E_ALL) mode can also help warn you about variables being used before 
+                    they are checked or initialized (so you can prevent unusual data from being operated upon).
+                </p>
+              </article>
+            </section>
+            <section class="main-section" id="Hiding_PHP">
+              <header>Hiding PHP</header>
+              <article>
+                <p>
+                    In general, security by obscurity is one of the weakest forms of security. But in some cases, 
+                    every little bit of extra security is desirable.
+                </p>
+                <p>
+                    A few simple techniques can help to hide PHP, possibly slowing down an attacker who is attempting 
+                    to discover weaknesses in your system. By setting expose_php to off in your <b>php.ini</b> file, you reduce 
+                    the amount of information available to them.
+                </p>
+                <p>
+                    Another tactic is to configure web servers such as apache to parse different filetypes through PHP, 
+                    either with an <b>.htaccess</b> directive, or in the apache configuration file itself. You can then use 
+                    misleading file extensions:
+                </p>
+                <p>
+                    <strong>Example #1 Hiding PHP as another language</strong>
+                </p>
+                <code># Make PHP code look like other code types
+                    AddType application/x-httpd-php .asp .py .pl
+                </code>
+                <p>
+                    Or obscure it completely:
+                </p>
+                <p>
+                    <strong>
+                        Example #2 Using unknown types for PHP extensions
+                    </strong>
+                </p>
+                <code># Make PHP code look like unknown types
+                    AddType application/x-httpd-php .bop .foo .133t
+                </code>
+
+                <p>
+                    Or hide it as HTML code, which has a slight performance hit because 
+                    all HTML will be parsed through the PHP engine:
+                </p>
+                <p>
+                    <strong>
+                        Example #3 Using HTML types for PHP extensions
+                    </strong>
+                </p>
+                <code># Make all PHP code look like HTML
+                    AddType application/x-httpd-php .htm .html
+                </code>
+                <p>
+                    For this to work effectively, you must rename your PHP files with the above extensions. 
+                    While it is a form of security through obscurity, it's a minor preventative measure with 
+                    few drawbacks.
+                </p>
+                <cite>
+                  Read about more <a href="https://www.php.net/manual/en/security.hiding.php" target="_blank">
+                      User Contributed Notes</a>
+                </cite>
+          
+              </article>
+            </section>
+            <section class="main-section" id="Keeping_Current">
+              <header>Keeping Current</header>
+              <article>
+                <p>PHP, like any other large system, is under constant scrutiny and improvement. 
+                    Each new version will often include both major and minor changes to enhance security 
+                    and repair any flaws, configuration mishaps, and other issues that will affect the overall 
+                    security and stability of your system.
+                </p>
+                <p>
+                    Like other system-level scripting languages and programs, the best approach is to update often,
+                    and maintain awareness of the latest versions and their changes.
+                </p>
+              </article>
+            </section>
+            <section class="main-section" id="Operators">
+              <header>Operators</header>
+              <article>
+                  <ol>
+                      <strong><li>
+                        Operator Precedence
+                      </li>
+                    </strong>
+                  </ol>
+                <p>
+                    The precedence of an operator specifies how "tightly" it binds two expressions together. 
+                    For example, in the expression 1 + 5 * 3, the answer is 16 and not 18 because the multiplication ("*") 
+                    operator has a higher precedence than the addition ("+") operator. Parentheses may be used to force 
+                    precedence, if necessary. For instance: (1 + 5) * 3 evaluates to 18.
+                </p>
+                <p>
+                    When operators have equal precedence their associativity decides how the operators are grouped. 
+                    For example "-" is left-associative, so 1 - 2 - 3 is grouped as (1 - 2) - 3 and evaluates to -4. "=" 
+                    on the other hand is right-associative, so $a = $b = $c is grouped as $a = ($b = $c).
+                </p>
+                <p>
+                    Operators of equal precedence that are non-associative cannot be used next to each other, 
+                    for example 1 < 2 > 1 is illegal in PHP. The expression 1 <= 1 == 1 on the other hand is legal, 
+                    because the == operator has a lower precedence than the <= operator.
+                </p>
+                <p>
+                    Use of parentheses, even when not strictly necessary, can often increase readability of the code 
+                    by making grouping explicit rather than relying on the implicit operator precedence and associativity.
+                </p>
+                <p>
+                    The following table lists the operators in order of precedence, with the highest-precedence ones
+                    at the top. Operators on the same line have equal precedence, in which case associativity decides grouping.
+                </p>
+                    <cite>
+                        Do you have time keep rading <a href="https://www.php.net/manual/en/language.operators.precedence.php"
+                        target="_blank">Operator Precedence</a>
+                    </cite>
+              </article>
+            </section>
+            <section class="main-section" id="Functions">
+              <header>Functions</header>
+              <article>
+                  <ol>
+                     <strong> <li>
+                        Functions
+                      </li> </strong>
+                  </ol>
+                <p>
+                    A function may be defined using syntax such as the following:
+                </p>
+                <p>
+                    <strong>
+                        Example #1 Pseudo code to demonstrate function uses
+                    </strong>
+                </p>
+                <code>
+                    ?php
+                    function foo($arg_1, $arg_2, /* ..., */ $arg_n)
+                    {
+                        echo "Example function.\n";
+                        return $retval;
+                    }
+                    ?>
+                </code>
+                <p>
+                    Any valid PHP code may appear inside a function, even other functions and 
+                    <a href="https://www.php.net/manual/en/language.oop5.basic.php#language.oop5.basic.class" target="_blank">
+                        class</a> definitions.
+                </p>
+                <p>
+                    Function names follow the same rules as other labels in PHP. A valid function name starts with 
+                    a letter or underscore, followed by any number of letters, numbers, or underscores. 
+                    As a regular expression, it would be expressed thus: ^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$.
+                </p>
+                <b>Tip</b>See also the
+                <a href="https://www.php.net/manual/en/userlandnaming.php"> Userland Naming Guide</a>.
+                <p>
+                    Functions need not be defined before they are referenced, except when a function is conditionally defined 
+                    as shown in the two examples below.
+                </p>
+                <p>
+                    When a function is defined in a conditional manner such as the two examples shown. Its definition must be 
+                    processed prior to being called.
+                </p>
+                <strong>
+                    <p>
+                        Example #2 Conditional functions
+                    </p>
+                </strong>
+                <code>
+                    ?php
+
+                    $makefoo = true;
+
+                    /* We can't call foo() from here 
+                       since it doesn't exist yet,
+                       but we can call bar() */
+
+                    bar();
+
+                    if ($makefoo) {
+                      function foo()
+                      {
+                        echo "I don't exist until program execution reaches me.\n";
+                      }
+                    }
+
+                    /* Now we can safely call foo()
+                       since $makefoo evaluated to true */
+
+                    if ($makefoo) foo();
+
+                    function bar() 
+                    {
+                      echo "I exist immediately upon program start.\n";
+                    }
+
+                    ?>
+                </code>
+                <strong>
+                    <p>
+                        Example #3 Functions within functions
+                    </p>
+                </strong>
+                <code>
+                    ?php
+                    function foo() 
+                    {
+                      function bar() 
+                      {
+                        echo "I don't exist until foo() is called.\n";
+                      }
+                    }
+
+                    /* We can't call bar() yet
+                       since it doesn't exist. */
+
+                    foo();
+
+                    /* Now we can call bar(),
+                       foo()'s processing has
+                       made it accessible. */
+
+                    bar();
+
+                    ?>
+                </code>
+                <p>
+                    All functions and classes in PHP have the global scope - they can be called outside 
+                    a function even if they were defined inside and vice versa.
+                </p>
+                <p>
+                    PHP does not support function overloading, nor is it possible to undefine or redefine
+                    previously-declared functions.
+                </p>
+                <p>
+                    <b>Note:</b> Function names are case-insensitive for the ASCII characters A to Z, 
+                    though it is usually good form to call functions as they appear in their declaration.
+                </p>
+                <cite>
+                    If you have time keep reading <a href="https://www.php.net/manual/en/functions.user-defined.php" target="_blank">
+                        User-defined functions
+                    </a>
+                </cite>
+              </article>
+            </section>
+            <section class="main-section" id="Copyright">
+              <header>Copyright</header>
+              <article>
+                <p>
+                    Copyright © 1997 - 2021 by the PHP Documentation Group. This material may be distributed only 
+                    subject to the terms and conditions set forth in the <a href="https://www.php.net/manual/en/cc.license.php" target="_blank">
+                    Creative Commons Attribution 3.0 License</a> or 
+                    later. A copy of the Creative Commons Attribution 3.0 license is distributed with this manual. 
+                    The latest version is presently available at » <a href="http://creativecommons.org/licenses/by/3.0/"
+                    target="_blank">creativecommons.org</a>.
+                </p>
+          
+                <p>
+                    If you are interested in redistribution or republishing of this document in whole or in part, 
+                    either modified or unmodified, and you have questions, please contact the Copyright holders at 
+                    » doc-license@lists.php.net. Note that this address is mapped to a publicly archived mailing list.
+                </p>
+          
+              </article>
+            </section>
+            <section class="main-section" id="Reference">
+              <header>Reference</header>
+              <article>
+                <ul>
+                  <li>
+                    All the documentation in this page is taken from
+                    <a
+                      href="https://www.php.net/manual/en/security.php"
+                      target="_blank"
+                      >php.net</a
+                    >
+                  </li>
+                </ul>
+              </article>
+            </section>
+          </main>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>         
+</body>
+</html>
